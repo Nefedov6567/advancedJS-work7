@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Магазин</title>
+</head>
+<body>
+  <h1>Добро пожаловать в магазин</h1>
+
+  <script>
+    fetch('/catalogData')
+      .then(response => response.json())
+      .then(data => {
+        console.log('Товары:', data);
+      });
+
+    const product = { product_name: "Мышка", price: 100 };
+    fetch('/addToCart', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(product)
+    }).then(res => res.text()).then(console.log);
+  </script>
+</body>
+</html>
+
+✅ Создан сервер на Express
+
+✅ Настроена отдача статических файлов (index.html, catalog.json, cart.json)
+
+✅ Реализован API:
+
+GET /catalogData — получение товаров
+
+POST /addToCart — добавление в корзину
+
+POST /removeFromCart — удаление из корзины
+
+✅ Данные хранятся в catalog.json и cart.json
+
+✅ Добавлен лог действий пользователя в stats.json
